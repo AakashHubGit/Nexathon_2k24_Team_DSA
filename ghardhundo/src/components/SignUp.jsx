@@ -14,6 +14,8 @@ const SignUp = () => {
     password: ''
   });
 
+ 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -25,7 +27,7 @@ const SignUp = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`/api/create${formData.userType}`, formData);
+      const response = await axios.post(`http://localhost:5000/api/auth/create${formData.userType}`, formData);
       console.log(response.data); // Handle success
     } catch (error) {
       console.error('Error signing up:', error); // Handle error
