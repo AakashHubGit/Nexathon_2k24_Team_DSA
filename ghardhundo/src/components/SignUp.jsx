@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {  useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -14,6 +15,8 @@ const SignUp = () => {
     password: ''
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -27,6 +30,7 @@ const SignUp = () => {
     try {
       const response = await axios.post(`http://localhost:5000/api/auth/create${formData.userType}`, formData);
       console.log(response.data); // Handle success
+      navigate("/signin")
     } catch (error) {
       console.error('Error signing up:', error); // Handle error
     }

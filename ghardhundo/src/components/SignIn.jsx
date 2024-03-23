@@ -1,4 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { useState } from 'react';
+import {  useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Slider from 'react-slick';
 
 const SignIn = () => {
     const [formData, setFormData] = useState({
@@ -7,6 +11,7 @@ const SignIn = () => {
       email: '',
       password: ''
     });
+    const navigate = useNavigate();
   
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -21,6 +26,7 @@ const SignIn = () => {
       try {
         const response = await axios.post(`http://localhost:5000/api/auth/login${formData.userType}`, formData);
         console.log(response.data); // Handle success
+        navigate('/'); // Redirect to home page
       } catch (error) {
         console.error('Error signing in:', error); // Handle error
       }
