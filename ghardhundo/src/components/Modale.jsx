@@ -35,7 +35,7 @@ const Modale = () => {
             {/* <Button type="primary" onClick={showModal}>
                 Open Modal
             </Button> */}
-            <Modal title="Preference" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <Modal title="Preference"  open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                 <div className='city'>
                     <p className='modaltitle'>Select City: </p>
                     <Radio.Group onChange={handleCityChange} value={selectedCity}>
