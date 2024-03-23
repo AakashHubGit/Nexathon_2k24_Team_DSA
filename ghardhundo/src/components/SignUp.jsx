@@ -14,8 +14,6 @@ const SignUp = () => {
     password: ''
   });
 
- 
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -34,13 +32,21 @@ const SignUp = () => {
     }
   };
 
+  const handleSliderChange = (index) => {
+    setFormData(prevState => ({
+      ...prevState,
+      userType: index === 0 ? 'user' : 'owner'
+    }));
+  };
+
   const sliderSettings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    adaptiveHeight: true
+    adaptiveHeight: true,
+    beforeChange: (oldIndex, newIndex) => handleSliderChange(newIndex)
   };
 
   return (
@@ -49,7 +55,6 @@ const SignUp = () => {
       <Slider {...sliderSettings}>
         <div>
           <form onSubmit={handleSignUp}>
-            <input type="hidden" name="userType" value="user" />
             <div>
               <label>Name:</label>
               <input type="text" name="name" value={formData.name} onChange={handleChange} required />
@@ -63,7 +68,6 @@ const SignUp = () => {
         </div>
         <div>
           <form onSubmit={handleSignUp}>
-            <input type="hidden" name="userType" value="owner" />
             <div>
               <label>Name:</label>
               <input type="text" name="name" value={formData.name} onChange={handleChange} required />
