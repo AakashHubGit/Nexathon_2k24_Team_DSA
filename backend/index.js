@@ -1,11 +1,22 @@
-const express = require("express");
-var app = express();
+const connectToMongo = require('./db');
+const express = require('express');
+const mongoose = require('mongoose');
 var cors = require('cors');
 
-app.use(cors);
+connectToMongo();
+
+const app = express()
+const port = 5000 || process.env.PORT
+
+app.use(cors());
+app.use(express.json());
+
+
+app.use('/api/auth', require('./routes/auth'))
+// app.use('/api/products', require('./routes/products'))
 
 
 
-app.listen(5000, function () {
-  console.log("Started application on port %d", 3000);
-});
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
