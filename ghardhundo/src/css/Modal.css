@@ -13,4 +13,6 @@
     gap: 10px;
 }
 
-.modalBack {}
+.ant-modal-content {
+    width: 600px !important;
+}

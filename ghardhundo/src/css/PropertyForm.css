@@ -1,6 +1,7 @@
 .property-form {
     max-width: 800px;
     margin: 0 auto;
+    margin-top: 100px;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
@@ -46,8 +47,8 @@
   button[type="submit"] {
     background-color: #28a745;
   }
-  
+/*   
   button[type="button"] {
     background-color: #dc3545;
-  }
+  } */
   
