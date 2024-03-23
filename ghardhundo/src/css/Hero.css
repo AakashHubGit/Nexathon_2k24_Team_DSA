@@ -1,12 +1,13 @@
 .heroContainer {
     height: 100vh;
     position: relative;
+    margin-bottom: 20px;
 }
 
 .heroImg {
     width: 100%;
     /* Ensure responsiveness */
-    height: 70%;
+    height: 100%;
     aspect-ratio: 16/9;
     background: linear-gradient(to top, #3204fdba, #9907facc), url('../assets/hero.jpg') no-repeat top center;
     display: block;
@@ -14,20 +15,20 @@
     margin: 0 auto;
     /* Center the image */
     filter: brightness(40%);
-    
+
 }
 
 
 .overlay {
     position: absolute;
-    top: 50%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
-  }
+}
 
-  .heroText{
+.heroText {
     font-size: 70px;
     font-weight: bold;
-  }
+}
