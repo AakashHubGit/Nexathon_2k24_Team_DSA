@@ -1,0 +1,15 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    .navbar-brand{
+        font-weight: bold;
+    }
+    .navbar-nav{
+        margin-left: 50%;
+
+        .nav-link{
+            font-weight: 600;
+            font-size: larger;
+        }
+    }
+}
