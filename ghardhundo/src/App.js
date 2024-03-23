@@ -1,11 +1,12 @@
 
 import './App.css';
+import UploadPhoto from './components/UploadPhoto';
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <>
+      <UploadPhoto />
+    </>
   );
 }
 

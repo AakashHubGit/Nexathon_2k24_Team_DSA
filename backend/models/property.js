@@ -5,15 +5,13 @@ const amenitiesSchema = new Schema({
     name: {
         type: String,
         required: true
-    },
-    image: {
-        type: String,
-        required: true
     }
 });
 
 const propertySchema = new Schema({
   name: { type: String, required: true },
+
+  filePath: { type: String, required: true },
 
   owner: {
     type: mongoose.Schema.Types.ObjectId,
