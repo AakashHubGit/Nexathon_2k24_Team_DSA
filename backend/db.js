@@ -4,7 +4,7 @@ const mongoURI=process.env.MONGO_URI
 
 
 const connectToMongo=async()=>{
-    mongoose.connect("mongodb+srv://teamprojects2902:startup@cluster0.wccp0eu.mongodb.net/")
+    mongoose.connect(mongoURI)
     .then(()=>{console.log("Connected To Mongo")})
     .catch((err)=>{console.log(err)});
 }

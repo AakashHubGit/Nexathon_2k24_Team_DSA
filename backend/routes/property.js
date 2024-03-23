@@ -1,53 +1,55 @@
 const express = require('express');
 const multer = require('multer');
-const path = require('path');
-const Property = require('../models/property');
+const Property = require('../models/property'); // Assuming you have a model for Property
 
 const router = express.Router();
 
+// Multer storage configuration for handling file uploads
 const storage = multer.diskStorage({
-  destination: './uploads/',
-  filename: function(req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Destination folder where uploaded images will be stored
+  },
+  filename: function (req, file, cb) {
+    // Generating a unique filename for each uploaded image
+    cb(null, Date.now() + '-' + file.originalname);
   }
 });
 
-const upload = multer({
-  storage: storage
-}).single('file');
 
-router.post('/upload', (req, res) => {
-  upload(req, res, (err) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Error uploading file' });
-    } else {
-      const { name, location, price, builder, amenities, floorplan, features, type, status, size, area, places } = req.body;
+const upload = multer({ storage: storage });
 
-      const property = new Property({
-        name,
-        location,
-        price,
-        builder,
-        amenities: [{ name: req.body.amenities }],
-        floorplan,
-        features: JSON.parse(features),
-        type,
-        status,
-        size,
-        area,
-        places: JSON.parse(places),
-        filePath: req.file.path
-      });
+// POST endpoint for uploading an image and property data
+router.post('/upload-property', upload.single('image'), async (req, res) => {
+  try {
+    // Extracting property data from request body
+    const { name, owner, location, price, builder, amenities, floorplan, features, type, status, size, area, places } = req.body;
+    console.log(req.body);
+    // Creating a new Property instance with the received data
+    const newProperty = new Property({
+      name,
+      filePath: "/path", // Path to the uploaded image file
+      owner,
+      location,
+      price,
+      builder,
+      amenities,
+      floorplan,
+      features,
+      type,
+      status,
+      size,
+      area,
+      places
+    });
 
-      property.save()
-        .then(() => res.status(200).json({ message: 'File uploaded and data saved successfully' }))
-        .catch(err => {
-          console.error(err);
-          res.status(500).json({ error: 'Error saving data to database' });
-        });
-    }
-  });
+    // Saving the new Property to the database
+    await newProperty.save();
+
+    res.status(201).json({ message: 'Property uploaded successfully', property: newProperty });
+  } catch (error) {
+    console.error('Error uploading property:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 module.exports = router;

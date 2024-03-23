@@ -1,12 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const amenitiesSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    }
-});
+
 
 const propertySchema = new Schema({
   name: { type: String, required: true },
@@ -14,8 +9,8 @@ const propertySchema = new Schema({
   filePath: { type: String, required: true },
 
   owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "owner",
+    type: String,
+    required: true,
   },
 
   location: { type: String, required: true },
@@ -24,11 +19,11 @@ const propertySchema = new Schema({
 
   builder: { type: String, required: true },
 
-  amenities:[amenitiesSchema],
+  amenities: {type: [String], required: true},
 
   floorplan: {type: String, required: true},
 
-  features: [String],
+  features: {type: [String], required: true},
 
   type: {
     type: String,
