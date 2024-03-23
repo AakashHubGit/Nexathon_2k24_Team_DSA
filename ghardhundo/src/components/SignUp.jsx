@@ -3,6 +3,7 @@ import axios from 'axios';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import '../css/signup.css'
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ const SignUp = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`/api/signup-${formData.userType}`, formData);
+      const response = await axios.post(`/api/create${formData.userType}`, formData);
       console.log(response.data); // Handle success
     } catch (error) {
       console.error('Error signing up:', error); // Handle error
@@ -50,14 +51,6 @@ const SignUp = () => {
             <div>
               <label>Name:</label>
               <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-            </div>
-            <div>
-              <label>Email:</label>
-              <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-            </div>
-            <div>
-              <label>Phone:</label>
-              <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
             </div>
             <div>
               <label>Password:</label>

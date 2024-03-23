@@ -13,10 +13,10 @@ function App() {
         { <Route path="/signup" element={<SignUp />} /> }
         { <Route path="/propertyform" element={<PropertyForm />}/>}
       </Routes>
-    <div className="App">
+    {/* <div className="App">
       <Navbar/>
       <Home/>
-    </div>
+    </div> */}
     </>
   );
 }
