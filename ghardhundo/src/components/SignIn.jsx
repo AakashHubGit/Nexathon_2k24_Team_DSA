@@ -4,7 +4,7 @@ import {  useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Slider from 'react-slick';
 
-const SignIn = () => {
+const SignIn = ({ setIsAuthenticated }  ) => {
     const [formData, setFormData] = useState({
       userType: 'user',
       name: '',
@@ -24,8 +24,9 @@ const SignIn = () => {
     const handleSignIn = async (e) => {
       e.preventDefault();
       try {
-        const response = await axios.post(`http://localhost:5000/api/auth/login${formData.userType}`, formData);
+        const response = await axios.post(`http://localhost:3001/api/auth/login${formData.userType}`, formData);
         console.log(response.data); // Handle success
+        setIsAuthenticated(true);
         navigate('/'); // Redirect to home page
       } catch (error) {
         console.error('Error signing in:', error); // Handle error
@@ -51,9 +52,9 @@ const SignIn = () => {
 
   return (
     <div className="signin-container">
-      <h2>Sign In</h2>
       <Slider {...sliderSettings}>
         <div>
+        <h3>Sign In as User</h3>
           <form onSubmit={handleSignIn}>
             <div>
               <label>Name:</label>
@@ -63,10 +64,12 @@ const SignIn = () => {
               <label>Password:</label>
               <input type="password" name="password" value={formData.password} onChange={handleChange} required />
             </div>
-            <button type="submit">Sign In as User</button>
+            <button type="submit">Sign In</button>
           </form>
+          <p>Don't have an account? <a href="/signup">Sign Up</a></p>
         </div>
         <div>
+        <h3>Sign In as Owner</h3>
           <form onSubmit={handleSignIn}>
             <div>
               <label>Email:</label>
@@ -76,8 +79,9 @@ const SignIn = () => {
               <label>Password:</label>
               <input type="password" name="password" value={formData.password} onChange={handleChange} required />
             </div>
-            <button type="submit">Sign In as Owner</button>
+            <button type="submit">Sign In</button>
           </form>
+          <p>Don't have an account? <a href="/signup">Sign Up</a></p>
         </div>
       </Slider>
     </div>

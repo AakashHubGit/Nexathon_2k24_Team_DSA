@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../css/signup.css'
 
-const SignUp = () => {
+const SignUp = ({ setIsAuthenticated }) => {
   const [formData, setFormData] = useState({
     userType: 'user',
     name: '',
@@ -28,9 +28,10 @@ const SignUp = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:5000/api/auth/create${formData.userType}`, formData);
+      const response = await axios.post(`http://localhost:3001/api/auth/create${formData.userType}`, formData);
       console.log(response.data); // Handle success
-      navigate("/signin")
+      setIsAuthenticated(true);
+      navigate("/")
     } catch (error) {
       console.error('Error signing up:', error); // Handle error
     }
@@ -58,6 +59,7 @@ const SignUp = () => {
       <h2>Sign Up</h2>
       <Slider {...sliderSettings}>
         <div>
+            <h3>Sign Up as User</h3>
           <form onSubmit={handleSignUp}>
             <div>
               <label>Name:</label>
@@ -67,10 +69,12 @@ const SignUp = () => {
               <label>Password:</label>
               <input type="password" name="password" value={formData.password} onChange={handleChange} required />
             </div>
-            <button type="submit">Sign Up as User</button>
+            <button type="submit">Sign Up</button>
           </form>
+          <p>Already have an account? <a href="/signin">Sign In</a></p>
         </div>
         <div>
+        <h3>Sign Up as Owner</h3>
           <form onSubmit={handleSignUp}>
             <div>
               <label>Name:</label>
@@ -88,8 +92,9 @@ const SignUp = () => {
               <label>Password:</label>
               <input type="password" name="password" value={formData.password} onChange={handleChange} required />
             </div>
-            <button type="submit">Sign Up as Owner</button>
+            <button type="submit">Sign Up</button>
           </form>
+          <p>Already have an account? <a href="/signin">Sign In</a></p>
         </div>
       </Slider>
     </div>
