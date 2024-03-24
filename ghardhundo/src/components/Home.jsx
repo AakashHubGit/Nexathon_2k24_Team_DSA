@@ -22,7 +22,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchProperties();
-
+    console.log(properties);
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -97,24 +97,23 @@ const Home = () => {
       return false;
     }
 
+
     return true;
   });
-
   return (
     <div>
       <Hero setPredictionResult={setPredictionResult} />
       {currentCity?
-      <>
+      <>{filteredProperties.map((property) => (
       
-      {filteredProperties.map((property) => (
         <HomeCard
-          key={property._id}
           id={property._id}
           img={property.filePath}
           name={property.name}
           builder={property.builder}
           location={property.location}
           status={property.status}
+          area={property.area}
           size={property.size}
           price={property.price}
         />
@@ -124,14 +123,14 @@ const Home = () => {
       <>
       {properties.map((property) => (
         <HomeCard
-        id={property._id}
           key={property._id}
           img={property.filePath}
           name={property.name}
           builder={property.builder}
           location={property.location}
           status={property.status}
-          area={property.size}
+          area={property.area}
+          size={property.size}
           price={property.price}
         />
       ))}
