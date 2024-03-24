@@ -18,7 +18,7 @@ const propertySchema = new Schema({
   price: { type: Number, required: true },
 
   builder: { type: String, required: true },
-
+  report: { type: String, required: false },
   amenities: {type: [String], required: true},
 
   floorplan: {type: String, required: true},
@@ -27,7 +27,7 @@ const propertySchema = new Schema({
 
   type: {
     type: String,
-    enum: ["Apartment", "Villa", "Builder Floor","Duplex","Penthouse","Studio","Townhouse","Mansion","Beach House"],
+    enum: ["Apartment", "Villa", "Builder Floor","Duplex","Penthouse","Studio","Townhouse","Mansion","Beach House", "Cottage"],
     required: true,
   },
 
