@@ -11,6 +11,8 @@ import { useState , useEffect} from 'react';
 
 
 const HomeCard = (props) => {
+
+    console.log(props)
     const [property, setproperty] = useState([])
     const getProperty=async()=>{
         try {
@@ -61,8 +63,8 @@ const HomeCard = (props) => {
                         <div className="var value">{props.status}</div>
                     </div>
                     <div className="text bhk">
-                        <div className="var key">BHK</div>
-                        <div className="var value">{props.bhk}</div>
+                        <div className="key">Area:</div>
+                        <div className="value">{props.size}</div>
                     </div>
                     <div className="text price">
                         <div className="var key">Price:</div>
