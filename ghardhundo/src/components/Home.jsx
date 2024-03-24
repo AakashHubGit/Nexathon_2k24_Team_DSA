@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useRef} from 'react';
 import Hero from './Hero';
 import HomeCard from './HomeCard';
 import Modale from './Modale';
@@ -9,7 +9,8 @@ const Home = () => {
   const [properties, setProperties] = useState([]);
   const [currentCity, setCurrentCity] = useState(null);
   const [predictionResult, setPredictionResult] = useState(null);
-  
+  const homeCardsRef = useRef(null);
+
   const fetchProperties = async () => {
     try {
       const response = await axios.get('http://localhost:3001/api/property/properties');
@@ -44,6 +45,12 @@ const Home = () => {
       setCurrentCity(predictionResult.prediction);
     }
   }, [predictionResult]);
+  useEffect(() => {
+    if (currentCity) {
+      // Scroll to HomeCards section when currentCity is set
+      homeCardsRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [currentCity]);
 
   const getCityFromCoordinates = async (latitude, longitude) => {
     try {
@@ -88,7 +95,7 @@ const Home = () => {
 
     // Check if property sqft falls within the range of the prediction result category
     const sqftRange = setAreaRange(predictionResult?.category);
-    const propertySqft = parseInt(property.area); 
+    const propertySqft = parseInt(property.area);
     if (propertySqft < sqftRange.min || propertySqft >= sqftRange.max) {
       return false;
     }
@@ -103,42 +110,42 @@ const Home = () => {
   return (
     <div>
       <Hero setPredictionResult={setPredictionResult} />
-      {currentCity?
-      <>{filteredProperties.map((property) => (
-      
-        <HomeCard
-          id={property._id}
-          img={property.filePath}
-          name={property.name}
-          builder={property.builder}
-          location={property.location}
-          status={property.status}
-          area={property.area}
-          size={property.size}
-          price={property.price}
-        />
-      ))}
-      </> 
-      :
-      <>
-      {properties.map((property) => (
-        <HomeCard
-        id={property._id}
-          key={property._id}
-          img={property.filePath}
-          name={property.name}
-          builder={property.builder}
-          location={property.location}
-          status={property.status}
-          area={property.area}
-          size={property.size}
-          price={property.price}
-        />
-      ))}
-      </>
-    }
+      {currentCity ?
+        <div ref={homeCardsRef}>{filteredProperties.map((property) => (
+
+          <HomeCard
+            id={property._id}
+            img={property.filePath}
+            name={property.name}
+            builder={property.builder}
+            location={property.location}
+            status={property.status}
+            area={property.area}
+            size={property.size}
+            price={property.price}
+          />
+        ))}
+        </div>
+        :
+        <>
+          {properties.map((property) => (
+            <HomeCard
+              id={property._id}
+              key={property._id}
+              img={property.filePath}
+              name={property.name}
+              builder={property.builder}
+              location={property.location}
+              status={property.status}
+              area={property.area}
+              size={property.size}
+              price={property.price}
+            />
+          ))}
+        </>
+      }
       <Modale />
-      <Carousal/>
+      <Carousal />
     </div>
   );
 };

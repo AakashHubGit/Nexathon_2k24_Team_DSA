@@ -71,5 +71,32 @@
       res.status(500).json({ error: 'Internal server error' });
     }
   });
+  
+
+router.put('/report/:id', async (req, res) => {
+  const id= req.params.id
+  const { report } = req.body;
+
+  try {
+      // Find the user by their ID
+      let property = await Property.findById(id);
+
+      if (!property) {
+          return res.status(404).json({ error: 'Property not found' });
+      }
+
+      // Update the number attribute
+      property.report = report;
+
+      // Save the updated user
+      await property.save();
+
+      res.json({ success: true, message: 'Report Added successfully' });
+  } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Unexpected error occurred');
+  }
+});
+
 
   module.exports = router;

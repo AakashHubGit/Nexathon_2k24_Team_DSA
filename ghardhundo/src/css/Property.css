@@ -14,7 +14,16 @@
     height: 70vh;
     overflow: hidden;
 }
-
+.name,.type,.place{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nearbyP{
+    display: flex;
+    gap: 10px;
+    align-items: start;
+}
 .name,
 .location,
 .type,
@@ -33,7 +42,7 @@
     font-weight: 500;
 }
 
-.location h2 {
+.location{
     font-size: 26px;
     font-weight: 400;
     color: #333;
