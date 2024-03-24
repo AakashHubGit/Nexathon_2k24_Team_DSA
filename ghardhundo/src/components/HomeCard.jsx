@@ -63,8 +63,12 @@ const HomeCard = (props) => {
                         <div className="var value">{props.status}</div>
                     </div>
                     <div className="text bhk">
-                        <div className="key">Area:</div>
+                        <div className="key">Size:</div>
                         <div className="value">{props.size}</div>
+                    </div>
+                    <div className="text bhk">
+                        <div className="key">Area:</div>
+                        <div className="value">{props.area}</div>
                     </div>
                     <div className="text price">
                         <div className="var key">Price:</div>

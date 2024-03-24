@@ -21,7 +21,7 @@ def predict():
         if location_match:
             X = location_match.group()
         else:
-            return jsonify({'error': 'Location information not found in input data'}), 400
+            X = None
         
         # Set a default value for X_size
         X_size = None
@@ -30,6 +30,8 @@ def predict():
         size_match = re.search(r'\b(1BHK|2BHK|3BHK|4BHK|5BHK)\b', input_data)
         if size_match:
             X_size = size_match.group()
+        else:
+            X_size = None
 
         # Extract sqft information
         sqft_match = re.search(r'\d+', input_data)

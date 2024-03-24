@@ -27,6 +27,7 @@ const Hero = ({setPredictionResult}) => {
       // Handle the result as needed
       console.log('Prediction result:', result.prediction);
       console.log('Prediction Project:', result.category);
+      console.log('Prediction Project:', result.size);
       setPredictionResult(result);
     } catch (error) {
       console.error('Error searching:', error);
