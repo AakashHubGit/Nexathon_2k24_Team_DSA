@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 
 const HomeCard = (props) => {
+
+    console.log(props)
     return (
         <AnimatePresence>
             <div className='cardContainer mx-auto'>
@@ -41,8 +43,8 @@ const HomeCard = (props) => {
                         <div className="value">{props.status}</div>
                     </div>
                     <div className="text bhk">
-                        <div className="key">BHK</div>
-                        <div className="value">{props.bhk}</div>
+                        <div className="key">Area:</div>
+                        <div className="value">{props.size}</div>
                     </div>
                     <div className="text price">
                         <div className="key">Price:</div>
