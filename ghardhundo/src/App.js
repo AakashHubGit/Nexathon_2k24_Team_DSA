@@ -18,6 +18,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/property/:id' element={<Property/>}/>
+        <Route path='/predict' element={<RatePred/>}/>
         { <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} />} /> }
         { <Route path="/signin" element={<SignIn setIsAuthenticated={setIsAuthenticated} />} /> }
         { <Route path="/propertyform" element={<PropertyForm />}/>}
