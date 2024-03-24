@@ -45,18 +45,18 @@ const HomeCard = (props) => {
                             <div className="label">Name:</div>
                             <div className="value">{props.name}</div>
                         </div>
-                        <div className="text">
+                        {/* <div className="text">
                             <div className="label">Builder:</div>
                             <div className="value">{props.builder}</div>
-                        </div>
+                        </div> */}
                         <div className="text">
                             <div className="label">Location:</div>
                             <div className="value">{props.location}</div>
                         </div>
-                        <div className="text">
+                        {/* <div className="text">
                             <div className="label">Construction Status:</div>
                             <div className="value">{props.status}</div>
-                        </div>
+                        </div> */}
                         <div className="text">
                             <div className="label">Price:</div>
                             <div className="value">&#x20B9;{props.price}</div>
@@ -65,10 +65,10 @@ const HomeCard = (props) => {
                             <div className="label">Size:</div>
                             <div className="value">{props.size}</div>
                         </div>
-                        <div className="text">
+                        {/* <div className="text">
                             <div className="label">Area:</div>
                             <div className="value">{props.area}</div>
-                        </div>
+                        </div> */}
                     </div>
                 </motion.div>
             </Link>
