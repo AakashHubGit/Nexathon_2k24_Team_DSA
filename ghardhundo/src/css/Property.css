@@ -38,22 +38,30 @@
 
 .type,
 .sizebhk,
-.area,
-.status {
+.area{
     font-size: 20px;
     font-weight: 500;
     color: #333;
     margin-top: 10px;
 }
+.status{
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+}
 
-.priceBox {
+.priceBox,.statusBox {
     margin-top: 10px;
 }
 
 .priceText,
-.statusText {
+.statusText,.nearby {
     font-weight: bold;
-    color: #555;
+    color: #211e1e;
+}
+
+.nearby{
+    margin-top: 10px;
 }
 
 .amenities,
