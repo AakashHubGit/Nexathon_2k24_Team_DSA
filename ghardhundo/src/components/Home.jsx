@@ -3,6 +3,7 @@ import Hero from './Hero';
 import HomeCard from './HomeCard';
 import Modale from './Modale';
 import axios from 'axios';
+import Carousal from './Carousal';
 
 const Home = () => {
   const [properties, setProperties] = useState([]);
@@ -12,6 +13,7 @@ const Home = () => {
   const fetchProperties = async () => {
     try {
       const response = await axios.get('http://localhost:3001/api/property/properties');
+      console.log(response.data.properties);
       setProperties(response.data.properties);
     } catch (error) {
       console.error('Error fetching properties:', error);

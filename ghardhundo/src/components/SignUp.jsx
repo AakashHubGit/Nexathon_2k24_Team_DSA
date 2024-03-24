@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../css/signup.css'
+import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
+
 
 const SignUp = ({ setIsAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -30,8 +33,13 @@ const SignUp = ({ setIsAuthenticated }) => {
     try {
       const response = await axios.post(`http://localhost:3001/api/auth/create${formData.userType}`, formData);
       console.log(response.data); // Handle success
-      setIsAuthenticated(true);
-      navigate("/")
+      
+        localStorage.setItem('token', response.authtoken)
+        setIsAuthenticated(true);
+        toast.success("Account Created Successfully");
+        navigate("/signin")
+      
+
     } catch (error) {
       console.error('Error signing up:', error); // Handle error
     }
@@ -59,7 +67,7 @@ const SignUp = ({ setIsAuthenticated }) => {
       <h2>Sign Up</h2>
       <Slider {...sliderSettings}>
         <div>
-            <h3>Sign Up as User</h3>
+          <h3>Sign Up as User</h3>
           <form onSubmit={handleSignUp}>
             <div>
               <label>Name:</label>
@@ -74,7 +82,7 @@ const SignUp = ({ setIsAuthenticated }) => {
           <p>Already have an account? <a href="/signin">Sign In</a></p>
         </div>
         <div>
-        <h3>Sign Up as Owner</h3>
+          <h3>Sign Up as Owner</h3>
           <form onSubmit={handleSignUp}>
             <div>
               <label>Name:</label>

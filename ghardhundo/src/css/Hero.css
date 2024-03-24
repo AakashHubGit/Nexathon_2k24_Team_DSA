@@ -9,7 +9,6 @@
     /* Ensure responsiveness */
     height: 100%;
     aspect-ratio: 16/9;
-    background: linear-gradient(to top, #3204fdba, #9907facc), url('../assets/hero.jpg') no-repeat top center;
     display: block;
     /* Remove any extra spacing */
     margin: 0 auto;
