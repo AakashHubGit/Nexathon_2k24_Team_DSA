@@ -9,7 +9,7 @@ const Home = () => {
   const [properties, setProperties] = useState([]);
   const [currentCity, setCurrentCity] = useState(null);
   const [predictionResult, setPredictionResult] = useState(null);
-
+  
   const fetchProperties = async () => {
     try {
       const response = await axios.get('http://localhost:3001/api/property/properties');
@@ -88,7 +88,7 @@ const Home = () => {
 
     // Check if property sqft falls within the range of the prediction result category
     const sqftRange = setAreaRange(predictionResult?.category);
-    const propertySqft = parseInt(property.size); 
+    const propertySqft = parseInt(property.area); 
     if (propertySqft < sqftRange.min || propertySqft >= sqftRange.max) {
       return false;
     }
