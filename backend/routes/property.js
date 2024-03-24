@@ -61,5 +61,15 @@
       res.status(500).json({ error: 'Internal server error' });
     }
   });
+  router.get('/property/:id', async (req, res) => {
+    const id= req.params.id
+    try {
+      const property = await Property.findById(id);
+      res.json({ property });
+    } catch (error) {
+      console.error('Error fetching properties:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
 
   module.exports = router;

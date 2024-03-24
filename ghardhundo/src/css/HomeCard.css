@@ -6,37 +6,49 @@
     border-radius: 12px;
     width: 90%;
     height: 400px;
-    background-color: aliceblue;
+    background-color: #fff;
     overflow: hidden;
-
-    .image {
-        width: 50%;
-        height: 100%;
-    }
+    transition: box-shadow 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
 }
-.cardContainer:hover{
+
+.cardContainer:hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.text{
+
+.image {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.CardText {
+    padding-left: 80px;
+    z-index: 3;
+    padding: 20px;
+    flex: 3;
+}
+
+.text {
     display: flex;
     align-items: center;
     justify-content: start;
     gap: 10px;
+    text-decoration: none !important;
 }
-.CardText{
-    z-index: 3;
-    padding: 0px 40px;
-    flex: 3;
+
+.var {
+    text-decoration: none !important;
 }
-.key{
-    color: rgb(54, 54, 54);
-    font-size: 22px;
+
+.key {
+    color: #363636;
+    font-size: 18px;
     font-weight: 400;
-    
 }
-.value{
-    color: rgb(0, 0, 0);
-    font-size: 25px;
+
+.value {
+    color: #000;
+    font-size: 22px;
     font-weight: 600;
-    
 }

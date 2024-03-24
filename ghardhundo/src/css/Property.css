@@ -1,0 +1,101 @@
+.propertyBack {
+    width: 100vw;
+    margin-top: 90px;
+}
+
+.detailText {
+    margin: 30px;
+}
+
+.imgBack {
+    aspect-ratio: 16/9;
+    border-radius: 20px;
+    width: 90vw;
+    height: 70vh;
+    overflow: hidden;
+}
+
+.name,
+.location,
+.type,
+.sizebhk,
+.area,
+.priceBox,
+.statusBox,
+.amenities,
+.features {
+    margin-bottom: 15px;
+}
+
+.name .building,
+.name .builder {
+    font-size: 35px;
+    font-weight: 500;
+}
+
+.location h2 {
+    font-size: 26px;
+    font-weight: 400;
+    color: #333;
+    margin: 0;
+}
+
+.type,
+.sizebhk,
+.area {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.priceText,
+.statusText,
+.nearby {
+    font-size: 26px;
+    font-weight: 400;
+    color: #383838;
+}
+
+.price,
+.status,
+.place {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.amenities,
+.features {
+    flex-direction: column;
+}
+
+.place {
+    font-size: 28px;
+    font-weight: 400;
+}
+
+/* Additional styles for visual enhancements */
+
+.propertyBack {
+    background-color: #f9f9f9;
+    padding-bottom: 30px;
+}
+
+.detailText {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.priceBox,
+.statusBox,
+.amenities,
+.features {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.imgBack .lazy-load-image-background.blur {
+    border-radius: 20px;
+}
+

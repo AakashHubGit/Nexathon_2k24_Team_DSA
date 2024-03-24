@@ -3,6 +3,7 @@ import Hero from './Hero';
 import HomeCard from './HomeCard';
 import Modale from './Modale';
 import axios from 'axios';
+import Carousal from './Carousal';
 
 const Home = () => {
   const [properties, setProperties] = useState([]);
@@ -11,6 +12,7 @@ const Home = () => {
   const fetchProperties = async () => {
     try {
       const response = await axios.get('http://localhost:3001/api/property/properties');
+      console.log(response.data.properties);
       setProperties(response.data.properties);
     } catch (error) {
       console.error('Error fetching properties:', error);
@@ -85,6 +87,7 @@ const Home = () => {
         if (currentCity && property.location === currentCity) {
           return (
             <HomeCard
+            id={property._id}
               key={property._id}
               img={property.filePath}
               name={property.name}
@@ -96,10 +99,20 @@ const Home = () => {
             />
           );
         } else {
-          return null;
+          <HomeCard
+              key={property._id}
+              img={property.filePath}
+              name={property.name}
+              builder={property.builder}
+              location={property.location}
+              status={property.status}
+              bhk={property.size}
+              price={property.price}
+            />
         }
       })}
-      <Modale />
+      <Carousal/>
+      {/* <Modale /> */}
     </div>
   );
 };

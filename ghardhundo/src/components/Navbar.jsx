@@ -4,10 +4,17 @@ import { Link } from "react-router-dom";
 import "../css/Navbar.css";
 import { useState } from "react";
 import { CiMenuFries } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ isAuthenticated }) => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
+  const handleLogout=()=>{
+    localStorage.removeItem('token');
+      
+        navigate('/signin');
+  }
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -26,28 +33,28 @@ const Navbar = ({ isAuthenticated }) => {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+          <ul id="home" class="navbar-nav">
             <li class="nav-item active">
-              <Link class="nav-link" to="">
+              <Link id="" class="nav-link" to="">
                 Home{" "}
               </Link>
             </li>
-            {isAuthenticated ? (
-                <ul>
+            {localStorage.getItem('token') ? (
+                <ul className="navbar-nav">
                 <li>
-                  <Link to="/dashboard">Dashboard</Link>
+                  <Link class="nav-link" to="/dashboard">Dashboard</Link>
                 </li>
                 <li>
-                  <Link to="/logout">Logout</Link>
+                  <button onClick={handleLogout} class="nav-link" to="/logout">Logout</button>
                 </li>
                 </ul>
             ) : (
               <>
                 <li>
-                  <Link to="/signin">Login</Link>
+                  <Link class="nav-link" to="/signin">Login</Link>
                 </li>
                 <li>
-                  <Link to="/signup">Sign Up</Link>
+                  <Link class="nav-link" to="/signup">Sign Up</Link>
                 </li>
               </>
             )}

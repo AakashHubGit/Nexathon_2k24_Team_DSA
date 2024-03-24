@@ -26,9 +26,6 @@ const Modale = () => {
         setIsModalOpen(false);
     };
 
-    useEffect(() => {
-        showModal(); // Open modal when component mounts
-    }, []); 
 
     return (
         <div className='modalBack'>
