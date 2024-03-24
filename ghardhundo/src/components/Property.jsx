@@ -119,7 +119,9 @@ const Property = (props) => {
                         </div>
                         <div className="features">
                             <div className="nearby">Reports:</div>
-                            {property.property.report }
+                            {property.property.report && property.property.report.map(p => (
+                                <div className="place">{p}, </div>
+                            ))}
                         </div>
 
                         <div onClick={showModal} className='btn btn-danger'>Report</div>
