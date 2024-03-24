@@ -123,6 +123,7 @@ const Home = () => {
       <>
       {properties.map((property) => (
         <HomeCard
+        id={property._id}
           key={property._id}
           img={property.filePath}
           name={property.name}
