@@ -15,7 +15,11 @@
 .cardContainer:hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-
+.priceBox{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 .image {
     width: 50%;
     height: 100%;
