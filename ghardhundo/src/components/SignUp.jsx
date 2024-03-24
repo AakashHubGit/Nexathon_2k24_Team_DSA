@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../css/signup.css'
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -59,6 +60,8 @@ const SignUp = () => {
               <input type="password" name="password" value={formData.password} onChange={handleChange} required />
             </div>
             <button type="submit">Sign Up as User</button>
+            <div>Already Signed Up?? </div>
+            <Link />
           </form>
         </div>
         <div>
