@@ -5,14 +5,14 @@ import "../css/Navbar.css";
 import { useState } from "react";
 import { CiMenuFries } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "sonner";
 const Navbar = ({ isAuthenticated }) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout=()=>{
     localStorage.removeItem('token');
-      
+      toast.error('Logged Out Successfully')
         navigate('/signin');
   }
   return (
