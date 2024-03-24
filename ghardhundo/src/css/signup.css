@@ -2,6 +2,10 @@
     max-width: 600px;
     margin: 0 auto;
   }
+.signin-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
   
   h2 {
     text-align: center;
@@ -32,7 +36,7 @@
   input[type="email"],
   input[type="tel"],
   input[type="password"] {
-    width: calc(100% - 16px);
+    width: 100%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -41,6 +45,7 @@
   
   button[type="submit"] {
     width: 100%;
+    margin: 20px 0;
     padding: 12px;
     font-size: 16px;
     background-color: #007bff;

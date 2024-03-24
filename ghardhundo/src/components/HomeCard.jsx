@@ -10,7 +10,7 @@ const HomeCard = (props) => {
     return (
         <AnimatePresence>
             <div className='cardContainer mx-auto'>
-                <motion.div whileHover={{ scale: 1.1 }} className='image mx-auto'>
+                <motion.div whileHover={{ scale: 1.05 }} className='image mx-auto'>
                     <LazyLoadImage
                         src={props.img}
                         width={'100%'}

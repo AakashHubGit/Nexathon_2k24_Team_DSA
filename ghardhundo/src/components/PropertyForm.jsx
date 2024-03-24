@@ -88,7 +88,7 @@ const PropertyForm = () => {
       }
     });
     try {
-      const response = await fetch('http://localhost:5000/api/property/upload-property', {
+      const response = await fetch('http://localhost:3001/api/property/upload-property', {
         method: 'POST',
         body: formDataToSend
       });
