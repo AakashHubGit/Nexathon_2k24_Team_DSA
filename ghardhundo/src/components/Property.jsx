@@ -66,6 +66,8 @@ const Property = (props) => {
                             src={property.property.filePath}
                             alt={property.property.name}
                             effect='blur'
+                            width={'100%'}
+                            height={'100%'}
                             placeholderSrc={property.property.filePath}
                             style={{
                                 borderRadius: '20px'
@@ -106,17 +108,22 @@ const Property = (props) => {
                             <div className="status">{property.property.status}</div>
                         </div>
                         <div className="amenities">
+                            <div>
                             <div className="nearby">Amenities:</div>
                             {property.property.amenities && property.property.amenities.map(p => (
                                 <div className="place">{p}, </div>
                             ))}
-                        </div>
-                        <div className="features">
+                            </div>
+                            <div>
+                            <div className="features">
                             <div className="nearby">Features:</div>
                             {property.property.features && property.property.features.map(p => (
                                 <div className="place">{p}, </div>
                             ))}
+                            </div>
                         </div>
+                        </div>
+                        
                         <div className="features">
                             <div className="nearby">Reports:</div>
                             {property.property.report && property.property.report.map(p => (

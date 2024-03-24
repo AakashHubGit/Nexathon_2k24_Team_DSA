@@ -17,7 +17,7 @@
 
 .image {
     width: 100%; /* Adjusted width to 100% for responsiveness */
-    height: 200px; /* Adjusted height of the image */
+    height: 400px !important; /* Adjusted height of the image */
     overflow: hidden;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
