@@ -18,7 +18,7 @@ const propertySchema = new Schema({
   price: { type: Number, required: true },
 
   builder: { type: String, required: true },
-  report: { type: String, required: false },
+  report: { type: [String], required: false },
   amenities: {type: [String], required: true},
 
   floorplan: {type: String, required: true},
