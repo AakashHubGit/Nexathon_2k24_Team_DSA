@@ -42,7 +42,9 @@ const Navbar = ({ isAuthenticated }) => {
             {localStorage.getItem('token') ? (
                 <ul className="navbar-nav">
                 <li>
-                  <Link class="nav-link" to="/dashboard">Dashboard</Link>
+                <Link class="nav-link active" to="/predict">
+                Rate Prediction
+              </Link>
                 </li>
                 <li>
                   <button onClick={handleLogout} className="btn btn-danger" to="/logout">Logout</button>
@@ -62,6 +64,7 @@ const Navbar = ({ isAuthenticated }) => {
               <Link class="nav-link" to="propertyform">
                 Sell Property{" "}
               </Link>
+              
             </li>
           </ul>
         </div>
