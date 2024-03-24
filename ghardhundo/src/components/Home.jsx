@@ -4,12 +4,13 @@ import HomeCard from './HomeCard';
 import Modale from './Modale';
 import axios from 'axios';
 import Carousal from './Carousal';
+import "../css/Home.css"
 
 const Home = () => {
   const [properties, setProperties] = useState([]);
   const [currentCity, setCurrentCity] = useState(null);
   const [predictionResult, setPredictionResult] = useState(null);
-  
+
   const fetchProperties = async () => {
     try {
       const response = await axios.get('http://localhost:3001/api/property/properties');
@@ -101,44 +102,26 @@ const Home = () => {
     return true;
   });
   return (
-    <div>
+    <div className="homeContainer">
       <Hero setPredictionResult={setPredictionResult} />
-      {currentCity?
-      <>{filteredProperties.map((property) => (
-      
-        <HomeCard
-          id={property._id}
-          img={property.filePath}
-          name={property.name}
-          builder={property.builder}
-          location={property.location}
-          status={property.status}
-          area={property.area}
-          size={property.size}
-          price={property.price}
-        />
-      ))}
-      </> 
-      :
-      <>
-      {properties.map((property) => (
-        <HomeCard
-        id={property._id}
-          key={property._id}
-          img={property.filePath}
-          name={property.name}
-          builder={property.builder}
-          location={property.location}
-          status={property.status}
-          area={property.area}
-          size={property.size}
-          price={property.price}
-        />
-      ))}
-      </>
-    }
+      <div className="homeCardsContainer">
+        {filteredProperties.map((property) => (
+          <HomeCard
+            key={property._id}
+            id={property._id}
+            img={property.filePath}
+            name={property.name}
+            builder={property.builder}
+            location={property.location}
+            status={property.status}
+            area={property.area}
+            size={property.size}
+            price={property.price}
+          />
+        ))}
+      </div>
       <Modale />
-      <Carousal/>
+      <Carousal />
     </div>
   );
 };

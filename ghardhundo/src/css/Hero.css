@@ -1,33 +1,60 @@
 .heroContainer {
     height: 100vh;
     position: relative;
-    margin-bottom: 20px;
-}
-
-.heroImg {
+  }
+  
+  .heroImg {
     width: 100%;
-    /* Ensure responsiveness */
     height: 100%;
-    aspect-ratio: 16/9;
-    display: block;
-    /* Remove any extra spacing */
-    margin: 0 auto;
-    /* Center the image */
-    filter: brightness(40%);
-
+    object-fit: cover;
+  }
+  
+  .label {
+    font-weight: bold;
+    color: #333;
 }
 
+.value {
+    font-weight: 500;
+    color: #333;
+}
 
-.overlay {
+  .overlay {
     position: absolute;
-    top: 70%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
-}
-
-.heroText {
-    font-size: 70px;
+  }
+  
+  .heroText {
+    font-size: 3.5em;
     font-weight: bold;
-}
+  }
+  
+  .ant-input-search {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 30px;
+  }
+  
+  .ant-input {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-color: transparent;
+  }
+  
+  .ant-input-search-button {
+    border-color: transparent;
+    border-left-color: transparent;
+    border-radius: 0 30px 30px 0;
+  }
+  
+  .ant-input-search-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .ant-input-search-button:focus {
+    box-shadow: none;
+  }
+  

@@ -1,59 +1,70 @@
+/* HomeCard.css */
+
 .cardContainer {
     display: flex;
+    flex-direction: column; /* Change to column layout on small screens */
     align-items: center;
-    justify-content: start;
     margin-bottom: 40px;
     border-radius: 12px;
-    width: 90%;
-    height: 400px;
+    width: 90%; /* Adjusted width for responsiveness */
+    max-width: 800px;
+    height: auto; /* Adjusted height to auto for responsiveness */
     background-color: #fff;
     overflow: hidden;
     transition: box-shadow 0.3s ease;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
 }
 
-.cardContainer:hover {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-.priceBox{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 .image {
-    width: 50%;
-    height: 100%;
+    width: 100%; /* Adjusted width to 100% for responsiveness */
+    height: 200px; /* Adjusted height of the image */
     overflow: hidden;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
-.CardText {
-    padding-left: 80px;
-    margin-left: 50px;
-    z-index: 3;
+.cardDetails {
     padding: 20px;
-    flex: 3;
+    width: 100%; /* Adjusted width to 100% for responsiveness */
 }
 
 .text {
     display: flex;
+    flex-wrap: wrap; /* Wrap text to next line if needed */
     align-items: center;
-    justify-content: start;
-    gap: 10px;
-    text-decoration: none !important;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%; /* Adjusted width to 100% for responsiveness */
 }
 
-.var {
-    text-decoration: none !important;
-}
-
-.key {
-    color: #363636;
-    font-size: 18px;
-    font-weight: 400;
+.label {
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px;
 }
 
 .value {
-    color: #000;
-    font-size: 22px;
-    font-weight: 600;
+    font-weight: 500;
+    color: #333;
+    width: calc(100% - 100px); /* Adjusted width for value to accommodate label */
+}
+
+.priceBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+    font-size: 18px;
+}
+
+.key {
+    font-weight: bold;
+}
+
+.value {
+    font-weight: 500;
+}
+
+.cardContainer:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }

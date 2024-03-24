@@ -1,11 +1,15 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import re
+import pandas as pd
 
 # Initialize Flask application
 app = Flask(__name__)
 
 CORS(app)
+
+data = pd.read_csv('Mumbai House Prices.csv')
+
 # Define the prediction endpoint
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -17,7 +21,8 @@ def predict():
         'C': range(1200, 1801),
         'D': range(1800,2500)
         }
-        location_match = re.search(r'\b(Bandra|Andheri|Parel|Ghatkopar|Thane|Mumbai|Lonavala)\b', input_data)
+
+        location_match = re.search(r'\b(Bandra|Andheri|Parel|Ghatkopar|Thane|Mumbai|Lonavala|Pune|Alibaug)\b', input_data)
         if location_match:
             X = location_match.group()
         else:
@@ -49,6 +54,16 @@ def predict():
         return jsonify({'prediction': X, 'category': cat, 'size': X_size}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+# Load the dataset
+
+# Endpoint for providing search recommendations
+@app.route('/search-recommendations', methods=['GET'])
+def search_recommendations():
+    query = request.args.get('query', '')  # Get the query parameter from the request
+    # Filter the dataset based on the query
+    recommendations = data[data['region'].str.contains(query, case=False)]['region'].unique().tolist()
+    return jsonify(recommendations)
 
 # Run the Flask application
 if __name__ == '__main__':
