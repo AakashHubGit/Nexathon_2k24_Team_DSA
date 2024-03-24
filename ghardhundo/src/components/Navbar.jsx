@@ -45,7 +45,7 @@ const Navbar = ({ isAuthenticated }) => {
                   <Link class="nav-link" to="/dashboard">Dashboard</Link>
                 </li>
                 <li>
-                  <button onClick={handleLogout} class="nav-link" to="/logout">Logout</button>
+                  <button onClick={handleLogout} className="btn btn-danger" to="/logout">Logout</button>
                 </li>
                 </ul>
             ) : (

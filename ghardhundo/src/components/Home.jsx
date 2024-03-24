@@ -109,6 +109,7 @@ const Home = () => {
       {filteredProperties.map((property) => (
         <HomeCard
           key={property._id}
+          id={property._id}
           img={property.filePath}
           name={property.name}
           builder={property.builder}
@@ -123,6 +124,7 @@ const Home = () => {
       <>
       {properties.map((property) => (
         <HomeCard
+        id={property._id}
           key={property._id}
           img={property.filePath}
           name={property.name}
@@ -136,6 +138,7 @@ const Home = () => {
       </>
     }
       <Modale />
+      <Carousal/>
     </div>
   );
 };

@@ -68,7 +68,7 @@ const HomeCard = (props) => {
                     </div>
                     <div className="text price">
                         <div className="var key">Price:</div>
-                        <div className="var value">{props.price}</div>
+                        <div className="var value">&#x20B9;{props.price}</div>
                     </div>
                 </div>
             </div>

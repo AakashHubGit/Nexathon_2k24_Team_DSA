@@ -28,6 +28,7 @@
 
 .CardText {
     padding-left: 80px;
+    margin-left: 50px;
     z-index: 3;
     padding: 20px;
     flex: 3;
