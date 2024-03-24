@@ -2,12 +2,13 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import re
 import pandas as pd
+import joblib
 
 # Initialize Flask application
 app = Flask(__name__)
 
 CORS(app)
-
+model = joblib.load('iris_model.joblib')
 data = pd.read_csv('Mumbai House Prices.csv')
 
 # Define the prediction endpoint
@@ -56,7 +57,24 @@ def predict():
         return jsonify({'error': str(e)}), 500
 
 # Load the dataset
+@app.route('/ratepred', methods=['POST'])
+def ratepred():
+    try:
+        # Extract the input data from the request
+        input_data = request.json['data']
+        bhk = input_data['bhk']
+        area = input_data['area']
+        region = input_data['region']
+        type_ = input_data['type']
 
+        # Perform prediction using the model
+        prediction = model.predict([[bhk, type_, area, region]])
+        
+        # Return the prediction result
+        return jsonify({'prediction': prediction[0]}), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 # Endpoint for providing search recommendations
 @app.route('/search-recommendations', methods=['GET'])
 def search_recommendations():

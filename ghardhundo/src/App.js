@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import { Toaster } from 'sonner';
 import Property from 'components/Property';
+import RatePred from 'components/RatePred';
 function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -20,6 +21,7 @@ function App() {
         { <Route path="/signup" element={<SignUp setIsAuthenticated={setIsAuthenticated} />} /> }
         { <Route path="/signin" element={<SignIn setIsAuthenticated={setIsAuthenticated} />} /> }
         { <Route path="/propertyform" element={<PropertyForm />}/>}
+        { <Route path="/ratePred" element={<RatePred />}/>}
       </Routes>
       <Toaster richColors={true}/>
     </>
