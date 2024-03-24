@@ -1,5 +1,4 @@
 .propertyContainer {
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,7 +9,7 @@
     width: 95vw;
     max-width: 800px;
     overflow: hidden;
-    height: 80vh;
+    height: 50vh; /* Reduced height for better proportion */
     aspect-ratio: 16/9;
     border-radius: 20px;
 }
@@ -18,12 +17,6 @@
 .propertyImage {
     width: 100%;
     border-radius: 20px;
-}
-
-.detailsContainer {
-    margin-top: 30px;
-    width: 100%;
-    max-width: 800px;
 }
 
 .detailText {
@@ -34,108 +27,77 @@
     background-color: #eaeaea;
 }
 
-.propertyDetails {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-.buildingName {
-    font-size: 28px;
+.name,
+.builder,
+.location {
+    font-size: 24px;
     font-weight: bold;
     margin-bottom: 5px;
-}
-
-.builderName {
-    font-size: 20px;
-    color: #666666;
-    margin-bottom: 10px;
-}
-
-.name,
-.type,
-.place,
-.status,.price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 25px;
-    font-weight: 500;
-}
-
-.nearbyP {
-    display: flex;
-    gap: 10px;
-    align-items: start;
-}
-
-.name,
-.location,
-.propertyType,
-.sizeBhk,
-.area,
-.priceBox,
-.statusBox,
-.amenities,
-.features {
-    margin-bottom: 15px;
-    
-}
-
-.amenities{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.statusBox{
-    display: flex;
-}
-
-.name .building,
-.name .builder {
-    font-size: 35px;
-    font-weight: 500;
-}
-
-.location {
-    font-size: 26px;
-    font-weight: 400;
     color: #333;
-    margin: 0;
 }
 
 .type,
 .sizebhk,
-.area {
-    font-size: 30px;
-    font-weight: 400;
+.area,
+.status {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+    margin-top: 10px;
+}
+
+.priceBox {
+    margin-top: 10px;
 }
 
 .priceText,
-.statusText,
-.nearby {
-    font-size: 26px;
-    font-weight: 400;
-    color: #383838;
+.statusText {
+    font-weight: bold;
+    color: #555;
 }
 
-
 .amenities,
-.features {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #333333;
+.features,
+.reports {
+    margin-top: 20px;
 }
 
-.placesNearby,
-.amenities,
-.features {
+.card {
+    width: 100%;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     margin-top: 15px;
 }
 
-.label {
+.card-header {
+    font-size: 20px;
     font-weight: bold;
-    color: #555555;
-    margin-right: 5px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-body {
+    font-size: 16px;
+    color: #555;
+}
+
+.btn {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #ff4444;
+    border: none;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #cc0000;
 }
