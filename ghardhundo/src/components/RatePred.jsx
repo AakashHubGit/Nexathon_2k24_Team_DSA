@@ -60,7 +60,7 @@ function RatePred() {
   };
   return (
     <div className="container">
-      <h2>Rate Prediction Form</h2>
+      <h2>Price Prediction Form</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="label">BHK:</label>
@@ -92,7 +92,7 @@ function RatePred() {
       </form>
       {predictedValue !== null && (
         <div className="result">
-          <h3>Predicted Rate:</h3>
+          <h3>Predicted Price:</h3>
           <p>{predictedValue.toFixed(2)} Lacs</p>
         </div>
       )}

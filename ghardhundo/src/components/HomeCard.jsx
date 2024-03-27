@@ -1,5 +1,5 @@
 // HomeCard.jsx
-
+import { Button } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,6 +9,7 @@ import '../css/HomeCard.css';
 
 const HomeCard = (props) => {
     const [property, setProperty] = useState([]);
+    const [interested, setInterested] = useState("Interested?")
 
     const getProperty = async () => {
         try {
@@ -20,9 +21,21 @@ const HomeCard = (props) => {
         }
     }
 
+    const addInterested = async () => {
+        try {
+            const response = await axios.put(`http://localhost:3001/api/property/interested/${props.id}`)
+            setInterested(`${props.interested} Are Interested in this Property`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         getProperty(props.key)
-    }, [])
+    }, []);
+    const handleInterested = () => {
+        addInterested()
+    }
 
     return (
         <AnimatePresence>
@@ -65,10 +78,9 @@ const HomeCard = (props) => {
                             <div className="label">Size:</div>
                             <div className="value">{props.size}</div>
                         </div>
-                        {/* <div className="text">
-                            <div className="label">Area:</div>
-                            <div className="value">{props.area}</div>
-                        </div> */}
+                        <div>
+                            <Button type="primary" onClick={addInterested} >{interested}</Button>
+                        </div>
                     </div>
                 </motion.div>
             </Link>

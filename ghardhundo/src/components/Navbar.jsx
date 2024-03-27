@@ -10,10 +10,10 @@ const Navbar = ({ isAuthenticated }) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogout=()=>{
+  const handleLogout = () => {
     localStorage.removeItem('token');
-      toast.error('Logged Out Successfully')
-        navigate('/signin');
+    toast.error('Logged Out Successfully')
+    navigate('/signin');
   }
   return (
     <div>
@@ -40,16 +40,22 @@ const Navbar = ({ isAuthenticated }) => {
               </Link>
             </li>
             {localStorage.getItem('token') ? (
-                <ul className="navbar-nav">
+              <ul className="navbar-nav">
                 <li>
-                <Link class="nav-link active" to="/predict">
-                Rate Prediction
-              </Link>
+                  <Link class="nav-link active" to="/predict">
+                    Rate Prediction
+                  </Link>
+                </li>
+                <li class="nav-item active">
+                  <Link class="nav-link" to="propertyform">
+                    Sell Property{" "}
+                  </Link>
+
                 </li>
                 <li>
-                  <button onClick={handleLogout} className="btn btn-danger" to="/logout">Logout</button>
+                  <button onClick={handleLogout} className="btn logoutBtn nav-link btn-danger" to="/logout">Logout</button>
                 </li>
-                </ul>
+              </ul>
             ) : (
               <>
                 <li>
@@ -60,12 +66,7 @@ const Navbar = ({ isAuthenticated }) => {
                 </li>
               </>
             )}
-            <li class="nav-item active">
-              <Link class="nav-link" to="propertyform">
-                Sell Property{" "}
-              </Link>
-              
-            </li>
+
           </ul>
         </div>
       </nav>

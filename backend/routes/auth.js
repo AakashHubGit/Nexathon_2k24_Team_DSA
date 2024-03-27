@@ -213,5 +213,16 @@ router.get('/getowner', fetchowner, async (req, res) => {
     }
 });
 
+router.get('/getowner/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+        const owner = await Owner.find({ _id: id }).select("-password")
+        res.send(owner);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Unexpected error occurred ");
+    }
+});
+
 
 module.exports = router

@@ -4,16 +4,28 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import '../css/HomeCard.css';
 import { useEffect } from 'react';
-import { Button, Modal } from 'antd';
+import dayjs from 'dayjs';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Button, Modal, Form, DatePicker, TimePicker } from 'antd';
+import { useNavigate, useParams } from 'react-router-dom';
+
 
 const Property = (props) => {
+    const navigate = useNavigate();
     const { id } = useParams();
     console.log(id);
     const [property, setProperty] = useState({});
     const [reportText, setReportText] = useState(''); // State to hold the value of the input field
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [appModalOpen, setappModalOpen] = useState(false);
+    const [owner, setOwner] = useState({})
+
+    const token=localStorage.getItem('token');
+    console.log(token);
+
+
+    const format = 'HH:mm';
+
 
     const getProperty = async (id) => {
         try {
@@ -27,7 +39,9 @@ const Property = (props) => {
 
     useEffect(() => {
         getProperty(id);
+        getOwner()
     }, [id]);
+
 
     const addReport = async () => {
         try {
@@ -57,6 +71,72 @@ const Property = (props) => {
         setReportText(e.target.value); // Update the report text state on input change
     };
 
+
+    const showAppModal = () => {
+        setappModalOpen(true);
+    };
+
+    const handleAppOk = () => {
+        if (localStorage.getItem('token')) {
+            addAppoint();
+        }
+        else {
+            navigate('/signin')
+        }
+    };
+
+    const handleAppCancel = () => {
+        setappModalOpen(false);
+    };
+
+    const [appForm, setAppForm] = useState({
+        appDate: '',
+        appTime: null,
+    });
+
+    const getOwner = async () => {
+        if (property && property.property) {
+            const response = await axios.get(`http://localhost:3001/api/auth/getowner/${property.property.owner}`);
+            setOwner(response.data);
+            console.log(response);
+        }
+    };
+
+    const addAppoint = async () => {
+        try {
+          const response = await axios.post(
+            'http://localhost:3001/api/appoint/addappoint',
+            {
+              property: id,
+              owner: owner._id,
+              date: appForm.appDate,
+              time: appForm.appTime
+            },
+            {
+              headers: {
+                'auth-token': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
+              }
+            }
+          );
+          const data = response.data;
+          // Handle the response data here
+        } catch (error) {
+          // Handle errors here
+          console.error('Error adding appointment:', error);
+        }
+      };
+
+
+
+    const onAppDateChange = (date, dateString) => {
+        setAppForm({ ...appForm, appDate: dateString });
+    };
+
+    const onAppTimeChange = (time, timeString) => {
+        setAppForm({ ...appForm, appTime: time });
+    };
+
     return (
         <div className='propertyContainer'>
             {property.property && (
@@ -75,29 +155,58 @@ const Property = (props) => {
                         />
                     </div>
                     <div className='detailText'>
+                        {
+                            localStorage.getItem('token') &&
+                            <div onClick={showAppModal} className='btn btn-primary'>
+                                Add Appointment
+                            </div>
+                        }
+
+                        <Modal title="Add Appointment" visible={appModalOpen} onOk={handleAppOk} onCancel={handleAppCancel}>
+                            <Form layout='vertical'>
+                                <Form.Item name="appDate"
+                                    label="Appointment Date" rules={[{ required: true, message: 'Please input the Appointment Date!' }]}>
+                                    <DatePicker name="appDate" value={appForm.appDate}
+                                        onChange={(date, dateString) => onAppDateChange(date, dateString)} />
+                                </Form.Item>
+                                <Form.Item name="appTime"
+                                    label="Appointment Time" rules={[{ required: true, message: 'Please input the Appointment Time!' }]}>
+                                    <TimePicker defaultValue={dayjs('00:00', format)} onChange={onAppTimeChange} format={format} />
+                                </Form.Item>
+                            </Form>
+                        </Modal>
                         <div className="name">
+
                             <div>
                                 <div className='building'>{property.property.name}</div>
                                 <div className='builder'>by {property.property.builder}</div>
+
+                                <div className="location">
+                                    <div>Location: {property.property.location}</div>
+                                </div>
                             </div>
-                            <div className="location">
-                                <div>Location: {property.property.location}</div>
+                            <div>
+                                {`${property.property.interested} users are interested in this property`}
                             </div>
+
                         </div>
                         <div className="type">
                             <div>Property Type: {property.property.type}</div>
                             <div className='priceBox'>
                                 <div className="priceText">Price:</div>
-                                <div className="price">{property.property.price}</div>
+                                <div className="price">{property.property.price} Cr</div>
                             </div>
                         </div>
                         <div className="sizebhk">{property.property.size}</div>
                         <div className="area">Area: {property.property.area}sq.ft</div>
                         <div className='nearbyP'>
-                            <div className="nearby">Places Nearby:</div>
+
                             <div>
                                 {property.property.places && property.property.places.map(p => (
-                                    <div className="place">{p}, </div>
+                                    <>
+                                        <div className="nearby">Places Nearby:</div>
+                                        <div className="place">{p}, </div>
+                                    </>
                                 ))}
                             </div>
 
@@ -109,29 +218,37 @@ const Property = (props) => {
                         </div>
                         <div className="amenities">
                             <div>
-                            <div className="nearby">Amenities:</div>
-                            {property.property.amenities && property.property.amenities.map(p => (
-                                <div className="place">{p}, </div>
-                            ))}
+
+                                {property.property.amenities && property.property.amenities.map(p => (
+                                    <>
+                                        <div className="nearby">Amenities:</div>
+                                        <div className="place">{p}, </div>
+                                    </>
+                                ))}
                             </div>
                             <div>
-                            <div className="features">
-                            <div className="nearby">Features:</div>
-                            {property.property.features && property.property.features.map(p => (
-                                <div className="place">{p}, </div>
-                            ))}
+                                <div className="features">
+
+                                    {property.property.features && property.property.features.map(p => (
+                                        <>
+                                            <div className="nearby">Features:</div>
+                                            <div className="place">{p}, </div>
+                                        </>
+                                    ))}
+
+                                </div>
                             </div>
                         </div>
-                        </div>
-                        
                         <div className="features">
-                            <div className="nearby">Reports:</div>
+
                             {property.property.report && property.property.report.map(p => (
-                                <div className="place">{p}, </div>
+                                <>
+                                    <div className="nearby">Reports:</div>
+                                    <div className="place">{p}, </div>
+                                </>
                             ))}
                         </div>
-
-                        <div onClick={showModal} className='btn btn-danger'>Report</div>
+                        <div onClick={showModal} className='btn reportBtn btn-danger'>Report</div>
                         <Modal title="Report Listing" visible={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                             <input type="text" name="report" value={reportText} onChange={onChange} />
                         </Modal>

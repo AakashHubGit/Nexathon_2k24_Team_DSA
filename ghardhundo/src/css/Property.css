@@ -4,6 +4,9 @@
     align-items: center;
     margin-top: 90px;
 }
+.appoint{
+   margin-left: 39em;
+}
 
 .imageContainer {
     width: 95vw;
@@ -25,6 +28,12 @@
     margin: 20px;
     padding: 20px;
     background-color: #eaeaea;
+}
+
+.name{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .name,
@@ -92,7 +101,7 @@
     color: #555;
 }
 
-.btn {
+.reportBtn {
     cursor: pointer;
     padding: 10px 20px;
     border-radius: 5px;
@@ -106,6 +115,6 @@
     transition: background-color 0.3s;
 }
 
-.btn:hover {
+.reportBtn:hover {
     background-color: #cc0000;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,useRef} from 'react';
+import React, { useEffect, useState ,useRef, useCallback} from 'react';
 import Hero from './Hero';
 import HomeCard from './HomeCard';
 import Modale from './Modale';
@@ -12,7 +12,9 @@ const Home = () => {
   const [predictionResult, setPredictionResult] = useState(null);
   const homeCardsRef = useRef(null);
 
-  const fetchProperties = async () => {
+  
+
+  const fetchProperties = useCallback(async () => {
     try {
       const response = await axios.get('http://localhost:3001/api/property/properties');
       console.log(response.data.properties);
@@ -20,11 +22,12 @@ const Home = () => {
     } catch (error) {
       console.error('Error fetching properties:', error);
     }
-  };
-
+  }, []);
   useEffect(() => {
     fetchProperties();
-    console.log(properties);
+  }, [fetchProperties]);
+
+  useEffect(() => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {

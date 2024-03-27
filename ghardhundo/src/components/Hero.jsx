@@ -3,6 +3,8 @@ import heroImg from '../assets/hero.jpg';
 import { Input, AutoComplete, Button } from 'antd'; // Import Button from Ant Design
 import axios from 'axios';
 import '../css/Hero.css';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const { Search } = Input;
 
@@ -51,7 +53,16 @@ const Hero = ({ setPredictionResult }) => {
 
   return (
     <div className='heroContainer'>
-      <img className='heroImg' src={heroImg} alt="" />
+      <div className="heroImg">
+        <LazyLoadImage
+          src={heroImg}
+          alt='Hero Image'
+          effect='blur'
+          width={'100%'}
+          height={'100%'}
+          placeholderSrc={heroImg}
+        />
+      </div>
       <div className="overlay">
         <div className='heroText'>Find Your Dream Ghar</div>
         <AutoComplete
