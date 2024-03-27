@@ -127,6 +127,7 @@ const Home = () => {
             area={property.area}
             size={property.size}
             price={property.price}
+            priceUnit={property.price_unit}
             interested={property.interested}
           />
         ))}
