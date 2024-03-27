@@ -121,13 +121,6 @@ const PropertyForm = () => {
       <div className="form-gorup">
 
       <label>
-        Owner:
-        <input type="text" name="owner" value={formData.owner} onChange={handleChange} required />
-      </label>
-      </div>
-      <div className="form-gorup">
-
-      <label>
         Location:
         <input type="text" name="location" value={formData.location} onChange={handleChange} required />
       </label>
