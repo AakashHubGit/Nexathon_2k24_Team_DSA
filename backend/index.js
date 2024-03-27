@@ -15,7 +15,6 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/property', require('./routes/property'))
 app.use('/api/appoint', require('./routes/appoint'))
-// app.use('/api/products', require('./routes/products'))
 
 
 
