@@ -6,39 +6,39 @@ const router = express.Router();
 
 
 
-  // POST endpoint for uploading an image and property data
-  router.post('/upload-property', upload.single('image'), async (req, res) => {
-    try {
-      // Extracting property data from request body
-      const { name, owner, location, price, builder, amenities, floorplan, features, type, status, size, area, places } = req.body;
-      console.log(req.body);
-      // Creating a new Property instance with the received data
-      const newProperty = new Property({
-        name,
-        filePath: "/path", // Path to the uploaded image file
-        owner,
-        location,
-        price,
-        builder,
-        amenities,
-        floorplan,
-        features,
-        type,
-        status,
-        size,
-        area,
-        places
-      });
+  // // POST endpoint for uploading an image and property data
+  // router.post('/upload-property', upload.single('image'), async (req, res) => {
+  //   try {
+  //     // Extracting property data from request body
+  //     const { name, owner, location, price, builder, amenities, floorplan, features, type, status, size, area, places } = req.body;
+  //     console.log(req.body);
+  //     // Creating a new Property instance with the received data
+  //     const newProperty = new Property({
+  //       name,
+  //       filePath: "/path", // Path to the uploaded image file
+  //       owner,
+  //       location,
+  //       price,
+  //       builder,
+  //       amenities,
+  //       floorplan,
+  //       features,
+  //       type,
+  //       status,
+  //       size,
+  //       area,
+  //       places
+  //     });
 
-      // Saving the new Property to the database
-      await newProperty.save();
+  //     // Saving the new Property to the database
+  //     await newProperty.save();
 
-      res.status(201).json({ message: 'Property uploaded successfully', property: newProperty });
-    } catch (error) {
-      console.error('Error uploading property:', error);
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  });
+  //     res.status(201).json({ message: 'Property uploaded successfully', property: newProperty });
+  //   } catch (error) {
+  //     console.error('Error uploading property:', error);
+  //     res.status(500).json({ error: 'Internal server error' });
+  //   }
+  // });
 
   router.get('/properties', async (req, res) => {
     try {
