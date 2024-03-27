@@ -42,8 +42,10 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    if (predictionResult && predictionResult.prediction) {
-      setCurrentCity(predictionResult.prediction);
+    if (predictionResult && predictionResult.location) {
+      setCurrentCity(predictionResult.location);
+      console.log(predictionResult.location);
+      console.log(predictionResult.type);
     }
   }, [predictionResult]);
   useEffect(() => {
@@ -90,7 +92,7 @@ const Home = () => {
 
   const filteredProperties = properties.filter(property => {
     // Check if property location matches current city
-    if (currentCity && property.location !== currentCity) {
+    if (currentCity && !property.location.toLowerCase().includes(currentCity.toLowerCase())) {
       return false;
     }
 
@@ -101,7 +103,7 @@ const Home = () => {
       return false;
     }
 
-    if (predictionResult?.size && property.size !== predictionResult.size) {
+    if (predictionResult?.type && property.type !== predictionResult.type) {
       return false;
     }
 
@@ -124,6 +126,7 @@ const Home = () => {
             area={property.area}
             size={property.size}
             price={property.price}
+            price_unit={property.price_unit}
           />
         ))}
         </div>
@@ -141,6 +144,7 @@ const Home = () => {
               area={property.area}
               size={property.size}
               price={property.price}
+              price_unit={property.price_unit}
             />
           ))}
         </>

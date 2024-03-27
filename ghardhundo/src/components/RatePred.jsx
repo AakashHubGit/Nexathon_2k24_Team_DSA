@@ -80,9 +80,9 @@ function RatePred() {
           </select>
         </div>
         <div className="form-group">
-          <label className="label">Property Type:</label>
+          <label className="label">Type:</label>
           <select value={selectedType} onChange={(e) => setSelectedType(e.target.value)} className="select-field">
-            <option value="">Select Property Type</option>
+            <option value="">Select Type</option>
             {Object.entries(typeMappings).map(([label, type]) => (
               <option key={label} value={type}>{type}</option>
             ))}

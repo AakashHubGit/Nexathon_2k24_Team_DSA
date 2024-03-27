@@ -59,7 +59,7 @@ const HomeCard = (props) => {
                         </div> */}
                         <div className="text">
                             <div className="label">Price:</div>
-                            <div className="value">&#x20B9;{props.price}</div>
+                            <div className="value">&#x20B9;{props.price} {props.price_unit}</div>
                         </div>
                         <div className="text">
                             <div className="label">Size:</div>

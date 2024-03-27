@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import heroImg from '../assets/hero.jpg';
-import { Input, AutoComplete } from 'antd';
+import { Input, AutoComplete, Button } from 'antd'; // Import Button from Ant Design
 import axios from 'axios';
 import '../css/Hero.css';
 
@@ -8,6 +8,7 @@ const { Search } = Input;
 
 const Hero = ({ setPredictionResult }) => {
   const [options, setOptions] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
 
   async function predict(inputData) {
     try {
@@ -31,9 +32,9 @@ const Hero = ({ setPredictionResult }) => {
     }
   }
 
-  const handleSearch = async (value) => {
+  const handleSearch = async () => {
     try {
-      const result = await predict(value);
+      const result = await predict(searchValue);
       setPredictionResult(result);
     } catch (error) {
       console.error('Error searching:', error);
@@ -41,6 +42,7 @@ const Hero = ({ setPredictionResult }) => {
   };
 
   const onSearchChange = async (value) => {
+    setSearchValue(value); // Update searchValue state
     if (value) {
       const recommendations = await fetchSearchRecommendations(value);
       setOptions(recommendations);
@@ -59,10 +61,12 @@ const Hero = ({ setPredictionResult }) => {
           }))}
           style={{ width: 400 }}
           onSelect={handleSearch}
-          onSearch={handleSearch}
+          onSearch={onSearchChange}
           onChange={onSearchChange}
+          value={searchValue} // Controlled component value
           placeholder={`Try "Property in Thane with area of 1000sqft"`}
         />
+        <Button type="primary" onClick={handleSearch}>Search</Button> {/* Add search button */}
       </div>
     </div>
   );

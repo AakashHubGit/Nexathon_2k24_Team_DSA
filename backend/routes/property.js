@@ -55,7 +55,9 @@
   router.get('/properties', async (req, res) => {
     try {
       const properties = await Property.find();
-      res.json({ properties });
+      const randomizedProperties = properties.sort(() => Math.random() - 0.5);
+    
+    res.json({ properties: randomizedProperties });
     } catch (error) {
       console.error('Error fetching properties:', error);
       res.status(500).json({ error: 'Internal server error' });

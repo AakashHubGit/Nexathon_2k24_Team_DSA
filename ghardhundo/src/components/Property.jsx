@@ -31,7 +31,7 @@ const Property = (props) => {
 
     const addReport = async () => {
         try {
-            const response = await axios.put(`http://localhost:3001/api/property/report/${id}`, {
+            const response = await axios.put(`http://localhost:4000/api/property/report/${id}`, {
                 report: reportText // Pass the report text as the request body
             });
             console.log(response.data);
