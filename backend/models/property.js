@@ -18,11 +18,11 @@ const propertySchema = new Schema({
   filePath: { type: String, required: true },
 
   location: { type: String, required: true },
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'owner',
-    required: false
-  },
+  // owner: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'owner',
+  //   required: false
+  // },
   price: {
     type: Number,
     required: true
