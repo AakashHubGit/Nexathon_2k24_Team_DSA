@@ -80,7 +80,7 @@ const HomeCard = (props) => {
                         </div>
                         <div className="text">
                             <div className="label">Area:</div>
-                            <div className="value">{props.area}</div>
+                            <div className="value">{props.area} Sqft</div>
                         </div>
                         <div className="text">
                             <div className="label">Size:</div>

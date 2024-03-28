@@ -23,7 +23,7 @@ const upload = multer({ storage: storage });
 router.post('/upload-property', upload.single('image'), async (req, res) => {
   try {
     // Extracting property data from request body
-    const { name, owner, location, price, builder, amenities, floorplan, features, type, status, size, area, places } = req.body;
+    const { name, location, price,price_unit, builder, amenities, floorplan, features, type, status, size, area, places } = req.body;
     console.log(req.body);
 
     const filename = req.file.filename;
@@ -32,9 +32,9 @@ router.post('/upload-property', upload.single('image'), async (req, res) => {
     const newProperty = new Property({
       name,
       filePath,
-      owner,
       location,
       price,
+      price_unit,
       builder,
       amenities,
       floorplan,

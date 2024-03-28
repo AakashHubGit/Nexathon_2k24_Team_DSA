@@ -9,6 +9,7 @@ const PropertyForm = () => {
     location: '',
     floorplan: '',
     price: '',
+    price_unit: '',
     builder: '',
     amenities: [],
     features: [],
@@ -137,6 +138,12 @@ const PropertyForm = () => {
       <label>
         Price:
         <input type="number" name="price" value={formData.price} onChange={handleChange} required />
+      </label>
+      </div>
+      <div className="form-gorup">
+      <label>
+        Price Unit:
+        <input type="text" name="price_unit" value={formData.price_unit} onChange={handleChange} required />
       </label>
       </div>
       <div className="form-gorup">

@@ -27,6 +27,10 @@ const propertySchema = new Schema({
     type: Number,
     required: true
   },
+  price_unit: {
+    type: String,
+    required: false
+  },
   interested: {
     type: Number,
     required: false,
