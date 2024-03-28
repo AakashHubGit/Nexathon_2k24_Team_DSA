@@ -5,6 +5,21 @@ import pandas as pd
 import joblib
 from fuzzywuzzy import process, fuzz
 import spacy
+import nltk
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+
+# Define the list of stopwords
+stop_words = set(stopwords.words('english'))
+
+# Function to remove stopwords from text
+def remove_stopwords(text):
+    words = text.split()
+    filtered_words = [word for word in words if word.lower() not in stop_words]
+    return ' '.join(filtered_words)
+
+# Iterate through projects and remove stopwords from 'name' field
+
 
 # Load the English language model
 nlp = spacy.load("en_core_web_sm")
@@ -121,6 +136,9 @@ projects = [
 
 ]
 
+
+for project in projects:
+    project['name'] = remove_stopwords(project['name'])
 # Define the prediction endpoint
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -165,7 +183,7 @@ def predict():
                 type_match = process.extractOne(token.text, [project["type"] for project in projects], scorer=fuzz.partial_ratio)
                 if type_match[1] > 70:  # Adjust the threshold as needed
                     type_ = type_match[0]
-                if location and type_:
+                if location or type_:
                     break
             return location, type_
 

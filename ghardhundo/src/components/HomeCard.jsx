@@ -75,6 +75,14 @@ const HomeCard = (props) => {
                             <div className="value">&#x20B9;{props.price} {props.price_unit}</div>
                         </div>
                         <div className="text">
+                            <div className="label">Type:</div>
+                            <div className="value">{props.type_}</div>
+                        </div>
+                        <div className="text">
+                            <div className="label">Area:</div>
+                            <div className="value">{props.area}</div>
+                        </div>
+                        <div className="text">
                             <div className="label">Size:</div>
                             <div className="value">{props.size}</div>
                         </div>

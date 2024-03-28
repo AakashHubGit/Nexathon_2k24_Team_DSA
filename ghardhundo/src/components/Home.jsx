@@ -130,6 +130,7 @@ const Home = () => {
             size={property.size}
             price={property.price}
             price_unit={property.price_unit}
+            type_={property.type}
           />
         ))}
         </div>
